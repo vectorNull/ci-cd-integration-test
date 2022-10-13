@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7001/weatherforecast",
+					"raw": "https://localhost:5000/weatherforecast",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "7001",
+					"port": "5000",
 					"path": [
 						"weatherforecast"
 					]

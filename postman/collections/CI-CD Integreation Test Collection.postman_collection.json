@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "0223217d-27bb-489a-91bd-fa3a63bed8a7",
+		"name": "CI/CD Integreation Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7914740"
+	},
+	"item": [
+		{
+			"name": "GET Weather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7001/weatherforecast",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"weatherforecast"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

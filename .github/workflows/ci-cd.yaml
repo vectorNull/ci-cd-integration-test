@@ -1,42 +1,58 @@
-name: Continuous Integration and Deployment
+# name: Continuous Integration and Deployment
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v3
+
+#       - name: Setup dotnet 6
+#         uses: actions/setup-dotnet@v3
+#         with:
+#           dotnet-version: '6.x'
+      
+#       - name: Install Postman CLI
+#         run: |
+#           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      
+#       - name: Login to Postman CLI
+#         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+#       - name: Restore dependencies
+#         run: dotnet restore
+
+#       - name: Build app
+#         run: dotnet build --no-restore
+
+#       - name: Run app
+#         run: dotnet run
+
+#       - name: Run API tests
+#         run: |
+#           postman collection run "${{ github.workspace }}/postman/collections/postman_collection.json" -e "7914740-adb2ade7-6091-41ab-a59b-8ea43729c44f" --integration-id "125010-${{ github.run_id }}"
+
+name: Automated API tests using Postman CLI
+
+on: push
 
 jobs:
-  build:
+  automated-api-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Setup dotnet 6
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.x'
-      
+      - uses: actions/checkout@v3
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-      
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build app
-        run: dotnet build --no-restore
-
-      - name: Run app
-        run: dotnet run
-
       - name: Run API tests
         run: |
-          postman collection run "${{ github.workspace }}/postman/collections/postman_collection.json" -e "7914740-adb2ade7-6091-41ab-a59b-8ea43729c44f" --integration-id "125010-${{ github.run_id }}"
-
-
+          postman collection run "${{ github.workspace }}/postman/collections/CI/CD Integreation Test Collection.json" -e "7914740-adb2ade7-6091-41ab-a59b-8ea43729c44f" --integration-id "125010-${{ github.run_id }}"
 
       

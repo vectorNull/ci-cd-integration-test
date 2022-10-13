@@ -17,10 +17,23 @@ jobs:
         with:
           dotnet-version: '6.x'
       
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
       - name: Restore dependencies
         run: dotnet restore
 
       - name: Build app
         run: dotnet build --no-restore
+
+      - name: Run API tests
+        run: |
+          postman collection run "${{ github.workspace }}/postman/collections/CI/CD Integreation Test Collection.json" -e "7914740-adb2ade7-6091-41ab-a59b-8ea43729c44f" --integration-id "125010-${{ github.run_id }}"
+
+
 
       

@@ -28,10 +28,10 @@ jobs:
         run: dotnet restore
 
       - name: Build app
-        run: dotnet build --no-restore
+        run: dotnet build --configuration Release --no-restore
 
-      - name: Run app
-        run: dotnet run
+      # - name: Run app
+      #   run: dotnet run
 
       - name: Run API tests
         run: |
